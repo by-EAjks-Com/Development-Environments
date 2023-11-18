@@ -38,3 +38,10 @@ RUN apt-mark hold \
         intel-hpckit-runtime-2023.2.0 \
         intel-dlfdkit-runtime-2023.1.0 \
         intel-aikit-runtime-2023.2.0
+
+# Upgrade the image with the latest patches
+
+RUN apt-get update && \
+    apt-get upgrade --yes && \
+    apt-get autoremove --yes --purge && \
+    rm -rf /var/lib/apt/lists/*

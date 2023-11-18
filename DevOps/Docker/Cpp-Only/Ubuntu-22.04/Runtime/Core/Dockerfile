@@ -34,3 +34,10 @@ RUN apt-get update && \
 
 RUN apt-mark hold \
         intel-oneapi-runtime-dpcpp-cpp
+
+# Upgrade the image with the latest patches
+
+RUN apt-get update && \
+    apt-get upgrade --yes && \
+    apt-get autoremove --yes --purge && \
+    rm -rf /var/lib/apt/lists/*

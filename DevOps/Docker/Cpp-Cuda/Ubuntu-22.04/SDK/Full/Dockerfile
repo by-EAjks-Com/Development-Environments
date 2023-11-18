@@ -57,3 +57,10 @@ RUN apt-get update && \
 RUN apt-mark hold \
         libcudnn8 \
         libcudnn8-dev
+
+# Upgrade the image with the latest patches
+
+RUN apt-get update && \
+    apt-get upgrade --yes && \
+    apt-get autoremove --yes --purge && \
+    rm -rf /var/lib/apt/lists/*
