@@ -37,3 +37,10 @@ RUN apt-get update && \
 RUN apt-mark hold \
         intel-oneapi-common-licensing-2023.2.0 \
         intel-oneapi-dpcpp-cpp-2023.2.0
+
+# Upgrade the image with the latest patches
+
+RUN apt-get update && \
+    apt-get upgrade --yes && \
+    apt-get autoremove --yes --purge && \
+    rm -rf /var/lib/apt/lists/*

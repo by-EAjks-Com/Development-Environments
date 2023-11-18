@@ -53,3 +53,10 @@ RUN apt-mark hold \
         cuda-nvtx-12-2 \
         libcublas-12-2 \
         libcusparse-12-2
+
+# Upgrade the image with the latest patches
+
+RUN apt-get update && \
+    apt-get upgrade --yes && \
+    apt-get autoremove --yes --purge && \
+    rm -rf /var/lib/apt/lists/*
