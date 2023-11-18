@@ -16,9 +16,9 @@
 
 ARG IMAGE_REPOSITORY
 ARG IMAGE_NAME
-ARG IMAGE_TAG
+ARG IMAGE_SHA
 
-FROM ${IMAGE_REPOSITORY}/${IMAGE_NAME}:${IMAGE_TAG}
+FROM ${IMAGE_REPOSITORY}/${IMAGE_NAME}@${IMAGE_SHA}
 
 LABEL maintainer "by-EAjks.Com <Contact@by-EAjks.Com>"
 
@@ -28,9 +28,9 @@ ENV DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update && \
     apt-get install --yes --no-install-recommends \
-        intel-hpckit-runtime-2023.2.0=2023.2.0-49438 \
-        intel-dlfdkit-runtime-2023.1.0=2023.1.0-46364 \
-        intel-aikit-runtime-2023.2.0=2023.2.0-48995 && \
+        intel-hpckit-runtime-2023.2.0 \
+        intel-dlfdkit-runtime-2023.1.0 \
+        intel-aikit-runtime-2023.2.0 && \
     apt-get autoremove --yes --purge && \
     rm -rf /var/lib/apt/lists/*
 
@@ -43,7 +43,7 @@ RUN apt-mark hold \
 
 RUN apt-get update && \
     apt-get install --yes --no-install-recommends \
-        libcudnn8=8.9.4.25-1+cuda12.2 && \
+        libcudnn8 && \
     apt-get autoremove --yes --purge && \
     rm -rf /var/lib/apt/lists/*
 

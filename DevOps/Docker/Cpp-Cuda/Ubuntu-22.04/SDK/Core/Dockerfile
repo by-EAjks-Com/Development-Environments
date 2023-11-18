@@ -16,9 +16,9 @@
 
 ARG IMAGE_REPOSITORY
 ARG IMAGE_NAME
-ARG IMAGE_TAG
+ARG IMAGE_SHA
 
-FROM ${IMAGE_REPOSITORY}/${IMAGE_NAME}:${IMAGE_TAG}
+FROM ${IMAGE_REPOSITORY}/${IMAGE_NAME}@${IMAGE_SHA}
 
 LABEL maintainer "by-EAjks.Com <Contact@by-EAjks.Com>"
 
@@ -29,8 +29,8 @@ ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update && \
     apt-get install --yes --no-install-recommends \
         build-essential \
-        intel-oneapi-common-licensing-2023.2.0=2023.2.0-49462 \
-        intel-oneapi-dpcpp-cpp-2023.2.0=2023.2.0-49495 && \
+        intel-oneapi-common-licensing-2023.2.0 \
+        intel-oneapi-dpcpp-cpp-2023.2.0 && \
     apt-get autoremove --yes --purge && \
     rm -rf /var/lib/apt/lists/*
 
@@ -42,16 +42,16 @@ RUN apt-mark hold \
 
 RUN apt-get update && \
     apt-get install --yes --no-install-recommends \
-        cuda-cudart-dev-12-2=12.2.140-1 \
-        cuda-command-line-tools-12-2=12.2.2-1 \
-        cuda-minimal-build-12-2=12.2.2-1 \
-        cuda-libraries-dev-12-2=12.2.2-1 \
-        cuda-nvml-dev-12-2=12.2.140-1 \
-        cuda-nvprof-12-2=12.2.142-1 \
-        libnpp-dev-12-2=12.2.1.4-1 \
-        libcublas-dev-12-2=12.2.5.6-1 \
-        libcusparse-dev-12-2=12.1.2.141-1 \
-        cuda-nsight-compute-12-2=12.2.2-1 && \
+        cuda-cudart-dev-12-2 \
+        cuda-command-line-tools-12-2 \
+        cuda-minimal-build-12-2 \
+        cuda-libraries-dev-12-2 \
+        cuda-nvml-dev-12-2 \
+        cuda-nvprof-12-2 \
+        libnpp-dev-12-2 \
+        libcublas-dev-12-2 \
+        libcusparse-dev-12-2 \
+        cuda-nsight-compute-12-2 && \
     apt-get autoremove --yes --purge && \
     rm -rf /var/lib/apt/lists/*
 

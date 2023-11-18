@@ -37,7 +37,7 @@ RUN apt-get update && \
 
 RUN apt-get update && \
     apt-get install --yes --no-install-recommends \
-        intel-oneapi-common-vars=2023.2.0-49462 && \
+        intel-oneapi-common-vars && \
     apt-get autoremove --yes --purge && \
     rm -rf /var/lib/apt/lists/*
 
@@ -63,8 +63,8 @@ RUN apt-get update && \
 
 RUN apt-get update && \
     apt-get install --yes --no-install-recommends \
-        cuda-cudart-12-2=12.2.140-1 \
-        cuda-compat-12-2=535.104.05-1 && \
+        cuda-cudart-12-2 \
+        cuda-compat-12-2 && \
     ln -s cuda-12.2 /usr/local/cuda && \
     apt-get autoremove --yes --purge && \
     rm -rf /var/lib/apt/lists/*
