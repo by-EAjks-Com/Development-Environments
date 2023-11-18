@@ -45,7 +45,7 @@ jobs:
           flavor: |
             latest=false
             prefix=
-            suffix=-ubuntu-22.04-runtime-base
+            suffix=-runtime-base-ubuntu-22.04
           tags: |
             type=schedule,pattern={{ date 'YYYYMMDD' }}
             type=semver,pattern={{ version }}
@@ -78,7 +78,7 @@ jobs:
           flavor: |
             latest=false
             prefix=
-            suffix=-ubuntu-22.04-runtime-core
+            suffix=-runtime-core-ubuntu-22.04
           tags: |
             type=schedule,pattern={{ date 'YYYYMMDD' }}
             type=semver,pattern={{ version }}
@@ -115,7 +115,7 @@ jobs:
           flavor: |
             latest=false
             prefix=
-            suffix=-ubuntu-22.04-sdk-core
+            suffix=-sdk-core-ubuntu-22.04
           tags: |
             type=schedule,pattern={{ date 'YYYYMMDD' }}
             type=semver,pattern={{ version }}
