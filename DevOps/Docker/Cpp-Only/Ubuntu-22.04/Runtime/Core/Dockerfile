@@ -16,9 +16,9 @@
 
 ARG IMAGE_REPOSITORY
 ARG IMAGE_NAME
-ARG IMAGE_TAG
+ARG IMAGE_SHA
 
-FROM ${IMAGE_REPOSITORY}/${IMAGE_NAME}:${IMAGE_TAG}
+FROM ${IMAGE_REPOSITORY}/${IMAGE_NAME}@${IMAGE_SHA}
 
 LABEL maintainer "by-EAjks.Com <Contact@by-EAjks.Com>"
 
@@ -28,7 +28,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update && \
     apt-get install --yes --no-install-recommends \
-        intel-oneapi-runtime-dpcpp-cpp=2023.2.1-16 && \
+        intel-oneapi-runtime-dpcpp-cpp && \
     apt-get autoremove --yes --purge && \
     rm -rf /var/lib/apt/lists/*
 

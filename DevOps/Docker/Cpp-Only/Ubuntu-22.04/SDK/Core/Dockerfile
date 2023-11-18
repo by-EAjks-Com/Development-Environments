@@ -16,9 +16,9 @@
 
 ARG IMAGE_REPOSITORY
 ARG IMAGE_NAME
-ARG IMAGE_TAG
+ARG IMAGE_SHA
 
-FROM ${IMAGE_REPOSITORY}/${IMAGE_NAME}:${IMAGE_TAG}
+FROM ${IMAGE_REPOSITORY}/${IMAGE_NAME}@${IMAGE_SHA}
 
 LABEL maintainer "by-EAjks.Com <Contact@by-EAjks.Com>"
 
@@ -29,8 +29,8 @@ ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update && \
     apt-get install --yes --no-install-recommends \
         build-essential \
-        intel-oneapi-common-licensing-2023.2.0=2023.2.0-49462 \
-        intel-oneapi-dpcpp-cpp-2023.2.0=2023.2.0-49495 && \
+        intel-oneapi-common-licensing-2023.2.0 \
+        intel-oneapi-dpcpp-cpp-2023.2.0 && \
     apt-get autoremove --yes --purge && \
     rm -rf /var/lib/apt/lists/*
 
