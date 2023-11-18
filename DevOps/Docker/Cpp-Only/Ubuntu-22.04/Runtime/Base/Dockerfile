@@ -37,7 +37,7 @@ RUN apt-get update && \
 
 RUN apt-get update && \
     apt-get install --yes --no-install-recommends \
-        intel-oneapi-common-vars=2023.2.0-49462 && \
+        intel-oneapi-common-vars && \
     apt-get autoremove --yes --purge && \
     rm -rf /var/lib/apt/lists/*
 
