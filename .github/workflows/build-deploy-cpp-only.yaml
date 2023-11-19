@@ -93,7 +93,7 @@ jobs:
           build-args: |
             IMAGE_REPOSITORY=${{ env.IMAGE_REPOSITORY }}
             IMAGE_NAME=${{ env.IMAGE_NAME }}
-            IMAGE_SHA=${{ steps.build-and-push-runtime-base.outputs.digest }}
+            IMAGE_SHA=${{ steps.build-and-push-runtime-base.outputs.imageid }}
           tags: ${{ steps.extract-metadata-runtime-core.outputs.tags }}
           labels: ${{ steps.extract-metadata-runtime-core.outputs.labels }}
           load: true
@@ -130,7 +130,7 @@ jobs:
           build-args: |
             IMAGE_REPOSITORY=${{ env.IMAGE_REPOSITORY }}
             IMAGE_NAME=${{ env.IMAGE_NAME }}
-            IMAGE_SHA=${{ steps.build-and-push-runtime-core.outputs.digest }}
+            IMAGE_SHA=${{ steps.build-and-push-runtime-core.outputs.imageid }}
           tags: ${{ steps.extract-metadata-sdk-core.outputs.tags }}
           labels: ${{ steps.extract-metadata-sdk-core.outputs.labels }}
           load: true
