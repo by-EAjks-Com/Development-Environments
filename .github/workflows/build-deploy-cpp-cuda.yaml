@@ -58,7 +58,6 @@ jobs:
           file: ./DevOps/Docker/Cpp-Cuda/Ubuntu-22.04/Runtime/Base/Dockerfile
           tags: ${{ steps.extract-metadata-runtime-base.outputs.tags }}
           labels: ${{ steps.extract-metadata-runtime-base.outputs.labels }}
-          load: true
           push: true
       - name: Sign ${{ env.IMAGE_NAME }} container image
         env:
@@ -94,7 +93,6 @@ jobs:
             IMAGE_SHA=${{ steps.build-and-push-runtime-base.outputs.digest }}
           tags: ${{ steps.extract-metadata-runtime-core.outputs.tags }}
           labels: ${{ steps.extract-metadata-runtime-core.outputs.labels }}
-          load: true
           push: true
       - name: Sign ${{ env.IMAGE_NAME }} container image
         env:
@@ -130,7 +128,6 @@ jobs:
             IMAGE_SHA=${{ steps.build-and-push-runtime-core.outputs.digest }}
           tags: ${{ steps.extract-metadata-sdk-core.outputs.tags }}
           labels: ${{ steps.extract-metadata-sdk-core.outputs.labels }}
-          load: true
           push: true
       - name: Sign ${{ env.IMAGE_NAME }} container image
         env:
