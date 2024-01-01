@@ -41,9 +41,6 @@ RUN apt-get update && \
     apt-get autoremove --yes --purge && \
     rm -rf /var/lib/apt/lists/*
 
-RUN apt-mark hold \
-        intel-oneapi-common-vars
-
 # Upgrade the image with the latest patches
 
 RUN apt-get update && \

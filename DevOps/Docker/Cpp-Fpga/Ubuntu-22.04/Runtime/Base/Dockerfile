@@ -37,14 +37,11 @@ RUN apt-get update && \
 
 RUN apt-get update && \
     apt-get install --yes --no-install-recommends \
-        intel-oneapi-common-vars=2023.2.0-49462 && \
+        intel-oneapi-common-vars && \
     apt-get autoremove --yes --purge && \
     rm -rf /var/lib/apt/lists/*
 
-RUN apt-mark hold \
-        intel-oneapi-common-vars
-
-# Add Xilinx/ALVEO support
+# Add Xilinx ALVEO support
 
 COPY DevOps/Docker/Commons/Fpga/Packages/xrt_202310.2.15.225_22.04-amd64-xrt.deb /root/
 COPY DevOps/Docker/Commons/Fpga/Packages/xilinx-u50-gen3x16-xdma_2023.1_2023_0507_2220-all.deb/xilinx-cmc-u50_1.0.40-3398385_all.deb /root/
