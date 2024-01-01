@@ -20,7 +20,7 @@ LABEL maintainer "by-EAjks.Com <Contact@by-EAjks.Com>"
 
 ENV DEBIAN_FRONTEND=noninteractive
 
-# Add Intel/oneAPI support
+# Add Intel OneAPI support
 
 RUN apt-get update && \
     apt-get install --yes --no-install-recommends \
