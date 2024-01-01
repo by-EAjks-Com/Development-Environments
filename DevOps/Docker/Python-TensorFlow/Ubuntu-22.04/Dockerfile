@@ -37,15 +37,9 @@ RUN apt-get update && \
 
 RUN apt-get update && \
     apt-get install --yes --no-install-recommends \
-        intel-oneapi-common-vars=2023.2.0-49462 \
-        intel-oneapi-common-licensing-2023.2.0=2023.2.0-49462 \
-        intel-oneapi-python=2023.2.0-49420 \
-        intel-oneapi-tensorflow=2.9.1.1-25852 && \
+        intel-oneapi-common-vars \
+        intel-oneapi-common-licensing-2024.0=2024.0.0-49406 \
+        intel-oneapi-python=2024.0.0-48923 \
+        intel-oneapi-tensorflow=2.13.0-49004 && \
     apt-get autoremove --yes --purge && \
     rm -rf /var/lib/apt/lists/*
-
-RUN apt-mark hold \
-        intel-oneapi-common-vars \
-        intel-oneapi-common-licensing-2023.2.0 \
-        intel-oneapi-python \
-        intel-oneapi-tensorflow
