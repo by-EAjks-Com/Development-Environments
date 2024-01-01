@@ -32,9 +32,6 @@ RUN apt-get update && \
     apt-get autoremove --yes --purge && \
     rm -rf /var/lib/apt/lists/*
 
-RUN apt-mark hold \
-        intel-oneapi-runtime-dpcpp-cpp
-
 # Add Nvidia CUDA support
 
 ENV NV_CUDA_LIB_VERSION 12.3.1-1

@@ -28,11 +28,8 @@ ENV DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update && \
     apt-get install --yes --no-install-recommends \
-        intel-oneapi-runtime-dpcpp-cpp=2023.2.1-16 && \
+        intel-oneapi-runtime-dpcpp-cpp && \
     apt-get autoremove --yes --purge && \
     rm -rf /var/lib/apt/lists/*
 
-RUN apt-mark hold \
-        intel-oneapi-runtime-dpcpp-cpp
-
-# Add Xilinx/ALVEO support
+# Add Xilinx ALVEO support

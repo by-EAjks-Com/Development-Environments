@@ -28,16 +28,9 @@ ENV DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update && \
     apt-get install --yes --no-install-recommends \
-        intel-hpckit-runtime-2023.2.0 \
-        intel-dlfdkit-runtime-2023.1.0 \
-        intel-aikit-runtime-2023.2.0 && \
+        intel-hpckit-runtime-2024.0=2024.0.1-37 && \
     apt-get autoremove --yes --purge && \
     rm -rf /var/lib/apt/lists/*
-
-RUN apt-mark hold \
-        intel-hpckit-runtime-2023.2.0 \
-        intel-dlfdkit-runtime-2023.1.0 \
-        intel-aikit-runtime-2023.2.0
 
 # Add Nvidia CUDA support
 
