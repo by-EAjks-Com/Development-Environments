@@ -24,7 +24,7 @@ LABEL maintainer "by-EAjks.Com <Contact@by-EAjks.Com>"
 
 ENV DEBIAN_FRONTEND=noninteractive
 
-# Add Intel/oneAPI support
+# Add Intel OneAPI support
 
 RUN apt-get update && \
     apt-get install --yes --no-install-recommends \
@@ -39,7 +39,7 @@ RUN apt-mark hold \
         intel-dlfdkit-runtime-2023.1.0 \
         intel-aikit-runtime-2023.2.0
 
-# Add NVIDIA/CUDA support
+# Add Nvidia CUDA support
 
 RUN apt-get update && \
     apt-get install --yes --no-install-recommends \

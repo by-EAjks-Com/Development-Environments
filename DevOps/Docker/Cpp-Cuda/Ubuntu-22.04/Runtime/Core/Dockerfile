@@ -24,7 +24,7 @@ LABEL maintainer "by-EAjks.Com <Contact@by-EAjks.Com>"
 
 ENV DEBIAN_FRONTEND=noninteractive
 
-# Add Intel/oneAPI support
+# Add Intel OneAPI support
 
 RUN apt-get update && \
     apt-get install --yes --no-install-recommends \
@@ -35,24 +35,25 @@ RUN apt-get update && \
 RUN apt-mark hold \
         intel-oneapi-runtime-dpcpp-cpp
 
-# Add NVIDIA/CUDA support
+# Add Nvidia CUDA support
+
+ENV NV_CUDA_LIB_VERSION 12.3.1-1
+ENV NV_LIBNPP_VERSION 12.2.3.2-1
+ENV NV_NVTX_VERSION 12.3.101-1
+ENV NV_LIBCUBLAS_VERSION 12.3.4.1-1
+ENV NV_LIBCUSPARSE_VERSION 12.2.0.103-1
+ENV NCCL_VERSION 2.19.3-1
 
 RUN apt-get update && \
     apt-get install --yes --no-install-recommends \
-        cuda-libraries-12-2 \
-        libnpp-12-2 \
-        cuda-nvtx-12-2 \
-        libcublas-12-2 \
-        libcusparse-12-2 && \
+        cuda-libraries-12-3=${NV_CUDA_LIB_VERSION} \
+        libnpp-12-3=${NV_LIBNPP_VERSION} \
+        cuda-nvtx-12-3=${NV_NVTX_VERSION} \
+        libcublas-12-3=${NV_LIBCUBLAS_VERSION} \
+        libcusparse-12-3=${NV_LIBCUSPARSE_VERSION} \
+        libnccl2=${NCCL_VERSION}+cuda12.3 && \
     apt-get autoremove --yes --purge && \
     rm -rf /var/lib/apt/lists/*
-
-RUN apt-mark hold \
-        cuda-libraries-12-2 \
-        libnpp-12-2 \
-        cuda-nvtx-12-2 \
-        libcublas-12-2 \
-        libcusparse-12-2
 
 # Upgrade the image with the latest patches
 
