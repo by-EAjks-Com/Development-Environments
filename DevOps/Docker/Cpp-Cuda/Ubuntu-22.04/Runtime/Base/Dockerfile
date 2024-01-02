@@ -66,7 +66,6 @@ RUN apt-get update && \
     apt-get install --yes --no-install-recommends \
         cuda-cudart-12-3=${NV_CUDA_CUDART_VERSION} \
         cuda-compat-12-3 && \
-    ln -s cuda-12.2 /usr/local/cuda && \
     apt-get autoremove --yes --purge && \
     rm -rf /var/lib/apt/lists/*
 
