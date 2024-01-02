@@ -34,4 +34,16 @@ RUN apt-get update && \
     apt-get autoremove --yes --purge && \
     rm -rf /var/lib/apt/lists/*
 
+RUN apt-mark hold \
+        build-essential \
+        intel-oneapi-common-licensing-2024.0 \
+        intel-oneapi-dpcpp-cpp-2024.0
+
 # Add Xilinx ALVEO support
+
+# Upgrade the image with the latest patches
+
+RUN apt-get update && \
+    apt-get upgrade --yes && \
+    apt-get autoremove --yes --purge && \
+    rm -rf /var/lib/apt/lists/*

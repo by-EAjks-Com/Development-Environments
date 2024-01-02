@@ -33,4 +33,14 @@ RUN apt-get update && \
     apt-get autoremove --yes --purge && \
     rm -rf /var/lib/apt/lists/*
 
+RUN apt-mark hold \
+        intel-hpckit-2024.0
+
 # Add Xilinx ALVEO support
+
+# Upgrade the image with the latest patches
+
+RUN apt-get update && \
+    apt-get upgrade --yes && \
+    apt-get autoremove --yes --purge && \
+    rm -rf /var/lib/apt/lists/*
