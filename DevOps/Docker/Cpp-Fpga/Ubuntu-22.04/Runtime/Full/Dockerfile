@@ -28,8 +28,15 @@ ENV DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update && \
     apt-get install --yes --no-install-recommends \
-        intel-hpckit-runtime-2024.0=2024.0.1-37 && \
+        intel-hpckit-runtime-2024.0 && \
     apt-get autoremove --yes --purge && \
     rm -rf /var/lib/apt/lists/*
 
 # Add Xilinx ALVEO support
+
+# Upgrade the image with the latest patches
+
+RUN apt-get update && \
+    apt-get upgrade --yes && \
+    apt-get autoremove --yes --purge && \
+    rm -rf /var/lib/apt/lists/*

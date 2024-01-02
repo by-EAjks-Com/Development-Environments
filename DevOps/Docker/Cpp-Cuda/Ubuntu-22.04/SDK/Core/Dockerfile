@@ -34,6 +34,11 @@ RUN apt-get update && \
     apt-get autoremove --yes --purge && \
     rm -rf /var/lib/apt/lists/*
 
+RUN apt-mark hold \
+        build-essential \
+        intel-oneapi-common-licensing-2024.0 \
+        intel-oneapi-dpcpp-cpp-2024.0
+
 # Add Nvidia CUDA support
 
 ENV NV_CUDA_CUDART_DEV_VERSION 12.3.101-1
@@ -59,6 +64,19 @@ RUN apt-get update && \
         cuda-nsight-compute-12-3=${NV_CUDA_NSIGHT_COMPUTE_VERSION} && \
     apt-get autoremove --yes --purge && \
     rm -rf /var/lib/apt/lists/*
+
+RUN apt-mark hold \
+        cuda-cudart-dev-12-3 \
+        cuda-command-line-tools-12-3 \
+        cuda-minimal-build-12-3 \
+        cuda-libraries-dev-12-3 \
+        cuda-nvml-dev-12-3 \
+        cuda-nvprof-12-3 \
+        libnpp-dev-12-3 \
+        libcublas-dev-12-3 \
+        libcusparse-dev-12-3 \
+        libnccl-dev \
+        cuda-nsight-compute-12-3
 
 ENV LIBRARY_PATH /usr/local/cuda/lib64/stubs${LIBRARY_PATH:+:${LIBRARY_PATH}}
 

@@ -33,6 +33,9 @@ RUN apt-get update && \
     apt-get autoremove --yes --purge && \
     rm -rf /var/lib/apt/lists/*
 
+RUN apt-mark hold \
+        intel-hpckit-2024.0
+
 # Add Nvidia CUDA support
 
 RUN apt-get update && \
@@ -43,7 +46,6 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/*
 
 RUN apt-mark hold \
-        libcudnn8 \
         libcudnn8-dev
 
 # Upgrade the image with the latest patches

@@ -86,3 +86,10 @@ RUN apt-mark hold \
         xilinx-sc-fw-u55 \
         xilinx-u55c-gen3x16-xdma-base \
         xilinx-u55c-gen3x16-xdma-validate
+
+# Upgrade the image with the latest patches
+
+RUN apt-get update && \
+    apt-get upgrade --yes && \
+    apt-get autoremove --yes --purge && \
+    rm -rf /var/lib/apt/lists/*

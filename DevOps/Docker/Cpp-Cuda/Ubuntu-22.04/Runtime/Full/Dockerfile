@@ -28,7 +28,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update && \
     apt-get install --yes --no-install-recommends \
-        intel-hpckit-runtime-2024.0=2024.0.1-37 && \
+        intel-hpckit-runtime-2024.0 && \
     apt-get autoremove --yes --purge && \
     rm -rf /var/lib/apt/lists/*
 
@@ -39,9 +39,6 @@ RUN apt-get update && \
         libcudnn8 && \
     apt-get autoremove --yes --purge && \
     rm -rf /var/lib/apt/lists/*
-
-RUN apt-mark hold \
-        libcudnn8
 
 # Upgrade the image with the latest patches
 
