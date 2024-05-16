@@ -34,21 +34,21 @@ RUN apt-get update && \
 
 # Add Nvidia CUDA support
 
-ENV NV_CUDA_LIB_VERSION 12.3.1-1
-ENV NV_LIBNPP_VERSION 12.2.3.2-1
-ENV NV_NVTX_VERSION 12.3.101-1
-ENV NV_LIBCUBLAS_VERSION 12.3.4.1-1
-ENV NV_LIBCUSPARSE_VERSION 12.2.0.103-1
-ENV NCCL_VERSION 2.19.3-1
+ENV NV_CUDA_LIB_VERSION 12.4.1-1
+ENV NV_LIBNPP_VERSION 12.2.5.30-1
+ENV NV_NVTX_VERSION 12.4.127-1
+ENV NV_LIBCUBLAS_VERSION 12.4.5.8-1
+ENV NV_LIBCUSPARSE_VERSION 12.3.1.170-1
+ENV NCCL_VERSION 2.21.5-1
 
 RUN apt-get update && \
     apt-get install --yes --no-install-recommends \
-        cuda-libraries-12-3=${NV_CUDA_LIB_VERSION} \
-        libnpp-12-3=${NV_LIBNPP_VERSION} \
-        cuda-nvtx-12-3=${NV_NVTX_VERSION} \
-        libcublas-12-3=${NV_LIBCUBLAS_VERSION} \
-        libcusparse-12-3=${NV_LIBCUSPARSE_VERSION} \
-        libnccl2=${NCCL_VERSION}+cuda12.3 && \
+        cuda-libraries-12-4=${NV_CUDA_LIB_VERSION} \
+        libnpp-12-4=${NV_LIBNPP_VERSION} \
+        cuda-nvtx-12-4=${NV_NVTX_VERSION} \
+        libcublas-12-4=${NV_LIBCUBLAS_VERSION} \
+        libcusparse-12-4=${NV_LIBCUSPARSE_VERSION} \
+        libnccl2=${NCCL_VERSION}+cuda12.4 && \
     apt-get autoremove --yes --purge && \
     rm -rf /var/lib/apt/lists/*
 

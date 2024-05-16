@@ -29,54 +29,54 @@ ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update && \
     apt-get install --yes --no-install-recommends \
         build-essential \
-        intel-oneapi-common-licensing-2024.0=2024.0.0-49406 \
-        intel-oneapi-dpcpp-cpp-2024.0=2024.0.2-49895 && \
+        intel-oneapi-common-licensing-2024.1=2024.1.0-579 \
+        intel-oneapi-dpcpp-cpp-2024.1=2024.1.0-963 && \
     apt-get autoremove --yes --purge && \
     rm -rf /var/lib/apt/lists/*
 
 RUN apt-mark hold \
         build-essential \
-        intel-oneapi-common-licensing-2024.0 \
-        intel-oneapi-dpcpp-cpp-2024.0
+        intel-oneapi-common-licensing-2024.1 \
+        intel-oneapi-dpcpp-cpp-2024.1
 
 # Add Nvidia CUDA support
 
-ENV NV_CUDA_CUDART_DEV_VERSION 12.3.101-1
-ENV NV_NVML_DEV_VERSION 12.3.101-1
-ENV NV_NVPROF_VERSION 12.3.101-1
-ENV NV_LIBNPP_DEV_VERSION 12.2.3.2-1
-ENV NV_LIBCUBLAS_DEV_VERSION 12.3.4.1-1
-ENV NV_LIBCUSPARSE_DEV_VERSION 12.2.0.103-1
-ENV NV_CUDA_NSIGHT_COMPUTE_VERSION 12.3.1-1
+ENV NV_CUDA_CUDART_DEV_VERSION 12.4.127-1
+ENV NV_NVML_DEV_VERSION 12.4.127-1
+ENV NV_NVPROF_VERSION 12.4.127-1
+ENV NV_LIBNPP_DEV_VERSION 12.2.5.30-1
+ENV NV_LIBCUBLAS_DEV_VERSION 12.4.5.8-1
+ENV NV_LIBCUSPARSE_DEV_VERSION 12.3.1.170-1
+ENV NV_CUDA_NSIGHT_COMPUTE_VERSION 12.4.1-1
 
 RUN apt-get update && \
     apt-get install --yes --no-install-recommends \
-        cuda-cudart-dev-12-3=${NV_CUDA_CUDART_DEV_VERSION} \
-        cuda-command-line-tools-12-3=${NV_CUDA_LIB_VERSION} \
-        cuda-minimal-build-12-3=${NV_CUDA_LIB_VERSION} \
-        cuda-libraries-dev-12-3=${NV_CUDA_LIB_VERSION} \
-        cuda-nvml-dev-12-3=${NV_NVML_DEV_VERSION} \
-        cuda-nvprof-12-3=${NV_NVPROF_VERSION} \
-        libnpp-dev-12-3=${NV_LIBNPP_DEV_VERSION} \
-        libcublas-dev-12-3=${NV_LIBCUBLAS_DEV_VERSION} \
-        libcusparse-dev-12-3=${NV_LIBCUSPARSE_DEV_VERSION} \
-        libnccl-dev=${NCCL_VERSION}+cuda12.3 \
-        cuda-nsight-compute-12-3=${NV_CUDA_NSIGHT_COMPUTE_VERSION} && \
+        cuda-cudart-dev-12-4=${NV_CUDA_CUDART_DEV_VERSION} \
+        cuda-command-line-tools-12-4=${NV_CUDA_LIB_VERSION} \
+        cuda-minimal-build-12-4=${NV_CUDA_LIB_VERSION} \
+        cuda-libraries-dev-12-4=${NV_CUDA_LIB_VERSION} \
+        cuda-nvml-dev-12-4=${NV_NVML_DEV_VERSION} \
+        cuda-nvprof-12-4=${NV_NVPROF_VERSION} \
+        libnpp-dev-12-4=${NV_LIBNPP_DEV_VERSION} \
+        libcublas-dev-12-4=${NV_LIBCUBLAS_DEV_VERSION} \
+        libcusparse-dev-12-4=${NV_LIBCUSPARSE_DEV_VERSION} \
+        libnccl-dev=${NCCL_VERSION}+cuda12.4 \
+        cuda-nsight-compute-12-4=${NV_CUDA_NSIGHT_COMPUTE_VERSION} && \
     apt-get autoremove --yes --purge && \
     rm -rf /var/lib/apt/lists/*
 
 RUN apt-mark hold \
-        cuda-cudart-dev-12-3 \
-        cuda-command-line-tools-12-3 \
-        cuda-minimal-build-12-3 \
-        cuda-libraries-dev-12-3 \
-        cuda-nvml-dev-12-3 \
-        cuda-nvprof-12-3 \
-        libnpp-dev-12-3 \
-        libcublas-dev-12-3 \
-        libcusparse-dev-12-3 \
+        cuda-cudart-dev-12-4 \
+        cuda-command-line-tools-12-4 \
+        cuda-minimal-build-12-4 \
+        cuda-libraries-dev-12-4 \
+        cuda-nvml-dev-12-4 \
+        cuda-nvprof-12-4 \
+        libnpp-dev-12-4 \
+        libcublas-dev-12-4 \
+        libcusparse-dev-12-4 \
         libnccl-dev \
-        cuda-nsight-compute-12-3
+        cuda-nsight-compute-12-4
 
 ENV LIBRARY_PATH /usr/local/cuda/lib64/stubs${LIBRARY_PATH:+:${LIBRARY_PATH}}
 

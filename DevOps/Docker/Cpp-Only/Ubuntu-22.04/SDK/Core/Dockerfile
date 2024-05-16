@@ -29,15 +29,15 @@ ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update && \
     apt-get install --yes --no-install-recommends \
         build-essential \
-        intel-oneapi-common-licensing-2024.0=2024.0.0-49406 \
-        intel-oneapi-dpcpp-cpp-2024.0=2024.0.2-49895 && \
+        intel-oneapi-common-licensing-2024.1=2024.1.0-579 \
+        intel-oneapi-dpcpp-cpp-2024.1=2024.1.0-963 && \
     apt-get autoremove --yes --purge && \
     rm -rf /var/lib/apt/lists/*
 
 RUN apt-mark hold \
         build-essential \
-        intel-oneapi-common-licensing-2024.0 \
-        intel-oneapi-dpcpp-cpp-2024.0
+        intel-oneapi-common-licensing-2024.1 \
+        intel-oneapi-dpcpp-cpp-2024.1
 
 # Upgrade the image with the latest patches
 
