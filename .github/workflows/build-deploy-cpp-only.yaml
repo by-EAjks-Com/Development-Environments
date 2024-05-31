@@ -43,7 +43,7 @@ jobs:
           flavor: |
             latest=false
             prefix=
-            suffix=-runtime-base-ubuntu-22.04
+            suffix=-runtime-base-ubuntu-24.04
           tags: |
             type=schedule,pattern={{ date 'YYYYMMDD' }}
             type=semver,pattern={{ version }}
@@ -55,7 +55,7 @@ jobs:
         uses: docker/build-push-action@v5.3.0
         with:
           context: .
-          file: ./DevOps/Docker/Cpp-Only/Ubuntu-22.04/Runtime/Base/Dockerfile
+          file: ./DevOps/Docker/Cpp-Only/Ubuntu-24.04/Runtime/Base/Dockerfile
           tags: ${{ steps.extract-metadata-runtime-base.outputs.tags }}
           labels: ${{ steps.extract-metadata-runtime-base.outputs.labels }}
           push: true
@@ -74,7 +74,7 @@ jobs:
           flavor: |
             latest=false
             prefix=
-            suffix=-runtime-core-ubuntu-22.04
+            suffix=-runtime-core-ubuntu-24.04
           tags: |
             type=schedule,pattern={{ date 'YYYYMMDD' }}
             type=semver,pattern={{ version }}
@@ -86,7 +86,7 @@ jobs:
         uses: docker/build-push-action@v5.3.0
         with:
           context: .
-          file: ./DevOps/Docker/Cpp-Only/Ubuntu-22.04/Runtime/Core/Dockerfile
+          file: ./DevOps/Docker/Cpp-Only/Ubuntu-24.04/Runtime/Core/Dockerfile
           build-args: |
             IMAGE_REPOSITORY=${{ env.IMAGE_REPOSITORY }}
             IMAGE_NAME=${{ env.IMAGE_NAME }}
@@ -109,7 +109,7 @@ jobs:
           flavor: |
             latest=false
             prefix=
-            suffix=-sdk-core-ubuntu-22.04
+            suffix=-sdk-core-ubuntu-24.04
           tags: |
             type=schedule,pattern={{ date 'YYYYMMDD' }}
             type=semver,pattern={{ version }}
@@ -121,7 +121,7 @@ jobs:
         uses: docker/build-push-action@v5.3.0
         with:
           context: .
-          file: ./DevOps/Docker/Cpp-Only/Ubuntu-22.04/SDK/Core/Dockerfile
+          file: ./DevOps/Docker/Cpp-Only/Ubuntu-24.04/SDK/Core/Dockerfile
           build-args: |
             IMAGE_REPOSITORY=${{ env.IMAGE_REPOSITORY }}
             IMAGE_NAME=${{ env.IMAGE_NAME }}
