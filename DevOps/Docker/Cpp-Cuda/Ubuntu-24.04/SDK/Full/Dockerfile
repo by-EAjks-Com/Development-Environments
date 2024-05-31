@@ -40,13 +40,13 @@ RUN apt-mark hold \
 
 RUN apt-get update && \
     apt-get install --yes --no-install-recommends \
-        libcudnn8 && \
-        libcudnn8-dev && \
+        libcudnn9-cuda-12 && \
+        libcudnn9-dev-cuda-12=9.1.1.17-1 && \
     apt-get autoremove --yes --purge && \
     rm -rf /var/lib/apt/lists/*
 
 RUN apt-mark hold \
-        libcudnn8-dev
+        libcudnn9-dev-cuda-12
 
 # Upgrade the image with the latest patches
 
