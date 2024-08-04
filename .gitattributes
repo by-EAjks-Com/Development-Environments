@@ -1,0 +1,130 @@
+#   by-EAjks.Com Development Environments
+#   Copyright (C) 2022-2024 Andrea and Eric DELAGE <Contact@by-EAjks.Com>
+#
+#   This program is free software: you can redistribute it and/or modify
+#   it under the terms of the GNU General Public License as published by
+#   the Free Software Foundation, either version 3 of the License, or
+#   (at your option) any later version.
+#
+#   This program is distributed in the hope that it will be useful,
+#   but WITHOUT ANY WARRANTY; without even the implied warranty of
+#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#   GNU General Public License for more details.
+#
+#   You should have received a copy of the GNU General Public License
+#   along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+# Default Attributes
+* text=auto
+
+# Attributes for Source Files
+*.h      text diff=cpp
+*.hh     text diff=cpp
+*.hpp    text diff=cpp
+*.hxx    text diff=cpp
+*.h++    text diff=cpp
+*.c      text diff=cpp
+*.cc     text diff=cpp
+*.cpp    text diff=cpp
+*.cxx    text diff=cpp
+*.c++    text diff=cpp
+*.cpi    text diff=cpp
+
+# Attributes for Precompiled Headers
+*.gch    filter=lfs diff=lfs merge=lfs -text
+*.pch    filter=lfs diff=lfs merge=lfs -text
+
+# Attributes for Compiled Object Files
+*.o      filter=lfs diff=lfs merge=lfs -text
+*.obj    filter=lfs diff=lfs merge=lfs -text
+*.lo     filter=lfs diff=lfs merge=lfs -text
+*.slo    filter=lfs diff=lfs merge=lfs -text
+
+# Attributes for Compiled Static Libraries
+*.a      filter=lfs diff=lfs merge=lfs -text
+*.la     filter=lfs diff=lfs merge=lfs -text
+*.lai    filter=lfs diff=lfs merge=lfs -text
+*.lib    filter=lfs diff=lfs merge=lfs -text
+
+# Attributes for Compiled Shared Libraries
+*.so     filter=lfs diff=lfs merge=lfs -text
+*.dylib  filter=lfs diff=lfs merge=lfs -text
+*.dll    filter=lfs diff=lfs merge=lfs -text
+
+# Attributes for Compiled Executables
+*.exe    filter=lfs diff=lfs merge=lfs -text
+*.out    filter=lfs diff=lfs merge=lfs -text
+*.app    filter=lfs diff=lfs merge=lfs -text
+
+# Attributes for Python Sources
+*.pxd    text diff=python
+*.py     text diff=python
+*.py3    text diff=python
+*.pyi    text diff=python
+*.pyw    text diff=python
+*.pyx    text diff=python
+*.pyz    text diff=python
+
+# Attributes for Python Binaries
+*.db     filter=lfs diff=lfs merge=lfs -text
+*.p      filter=lfs diff=lfs merge=lfs -text
+*.pkl    filter=lfs diff=lfs merge=lfs -text
+*.pickle filter=lfs diff=lfs merge=lfs -text
+*.pyc    filter=lfs diff=lfs merge=lfs -text export-ignore
+*.pyo    filter=lfs diff=lfs merge=lfs -text export-ignore
+*.pyd    filter=lfs diff=lfs merge=lfs -text
+
+# Attributes for Jupyter Notebooks
+*.ipynb  text eol=lf
+
+# Attributes for Bash Scripts
+*.bash   text eol=lf diff=bash
+*.sh     text eol=lf diff=bash
+
+# Attributes for BATCH/CMD Scripts
+*.bat    text eol=crlf
+*.cmd    text eol=crlf
+
+# Attributes for PowerShell Scripts
+*.ps1    text eol=crlf
+*.ps1x   text eol=crlf
+*.psm1   text eol=crlf
+*.psd1   text eol=crlf
+*.ps1xml text eol=crlf
+*.pssc   text eol=crlf
+*.psrc   text eol=crlf
+*.cdxml  text eol=crlf
+
+# Attributes for TCL/TK Scripts
+*.tcl    text
+*.tk     text
+
+# Attributes for Configuration Files
+*.json   text
+*.xml    text
+*.yaml   text
+
+# Attributes for Documents
+*.md     text diff=markdown
+*.jpg    filter=lfs diff=lfs merge=lfs -text
+*.jpeg   filter=lfs diff=lfs merge=lfs -text
+*.png    filter=lfs diff=lfs merge=lfs -text
+*.tif    filter=lfs diff=lfs merge=lfs -text
+*.tiff   filter=lfs diff=lfs merge=lfs -text
+*.doc    filter=lfs diff=lfs merge=lfs -text
+*.docx   filter=lfs diff=lfs merge=lfs -text
+*.ppt    filter=lfs diff=lfs merge=lfs -text
+*.pptx   filter=lfs diff=lfs merge=lfs -text
+*.vsd    filter=lfs diff=lfs merge=lfs -text
+*.vsdx   filter=lfs diff=lfs merge=lfs -text
+*.xls    filter=lfs diff=lfs merge=lfs -text
+*.xlsx   filter=lfs diff=lfs merge=lfs -text
+*.pdf    filter=lfs diff=lfs merge=lfs -text
+
+# Attributes for Archives
+*.zip    filter=lfs diff=lfs merge=lfs -text
+*.tar    filter=lfs diff=lfs merge=lfs -text
+*.gz     filter=lfs diff=lfs merge=lfs -text
+*.tgz    filter=lfs diff=lfs merge=lfs -text
+*.bz     filter=lfs diff=lfs merge=lfs -text
+*.tbz    filter=lfs diff=lfs merge=lfs -text
