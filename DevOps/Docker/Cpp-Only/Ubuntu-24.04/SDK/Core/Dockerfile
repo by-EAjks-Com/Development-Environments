@@ -37,8 +37,8 @@ RUN apt-get update \
         clang-tools \
         doxygen \
         graphviz \
-        intel-oneapi-common-licensing-2024.2=2024.2.0-589 \
-        intel-oneapi-dpcpp-cpp-2024.2=2024.2.0-981 \
+        intel-oneapi-common-licensing-2024.2=2024.2.1-21 \
+        intel-oneapi-dpcpp-cpp-2024.2=2024.2.1-1079 \
  && apt-get autoremove --yes --purge \
  && rm -rf /var/lib/apt/lists/*
 
