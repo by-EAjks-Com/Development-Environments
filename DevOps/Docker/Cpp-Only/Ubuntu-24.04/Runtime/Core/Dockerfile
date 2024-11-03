@@ -28,7 +28,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update \
  && apt-get install --yes --no-install-recommends \
-        intel-oneapi-runtime-dpcpp-cpp-2024 \
+        intel-oneapi-runtime-dpcpp-cpp \
  && apt-get autoremove --yes --purge \
  && rm -rf /var/lib/apt/lists/*
 

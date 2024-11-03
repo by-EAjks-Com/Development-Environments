@@ -28,20 +28,20 @@ ENV DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update \
  && apt-get install --yes --no-install-recommends \
-        intel-hpckit-runtime-2024.2 \
-        intel-hpckit-2024.2=2024.2.1-77 \
+        intel-hpckit-runtime \
+        intel-hpckit=2025.0.0-824 \
  && apt-get autoremove --yes --purge \
  && rm -rf /var/lib/apt/lists/*
 
 RUN apt-mark hold \
-        intel-hpckit-2024.2
+        intel-hpckit
 
 # Add Nvidia CUDA support
 
 RUN apt-get update \
  && apt-get install --yes --no-install-recommends \
         libcudnn9-cuda-12 \
-        libcudnn9-dev-cuda-12=9.2.1.18-1 \
+        libcudnn9-dev-cuda-12=9.5.1.17-1 \
  && apt-get autoremove --yes --purge \
  && rm -rf /var/lib/apt/lists/*
 

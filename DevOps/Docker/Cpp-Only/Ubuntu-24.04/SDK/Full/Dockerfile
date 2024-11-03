@@ -28,13 +28,13 @@ ENV DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update \
  && apt-get install --yes --no-install-recommends \
-        intel-hpckit-runtime-2024.2 \
-        intel-hpckit-2024.2=2024.2.1-77 \
+        intel-hpckit-runtime \
+        intel-hpckit=2025.0.0-824 \
  && apt-get autoremove --yes --purge \
  && rm -rf /var/lib/apt/lists/*
 
 RUN apt-mark hold \
-        intel-hpckit-2024.2
+        intel-hpckit
 
 # Upgrade the image with the latest patches
 
