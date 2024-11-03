@@ -28,25 +28,20 @@ ENV DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update \
  && apt-get install --yes --no-install-recommends \
-        intel-oneapi-runtime-dpcpp-cpp-2024 \
+        intel-oneapi-runtime-dpcpp-cpp \
  && apt-get autoremove --yes --purge \
  && rm -rf /var/lib/apt/lists/*
 
 # Add Nvidia CUDA support
 
-ENV NV_CUDA_LIB_VERSION=12.5.1-1
-ENV NV_LIBNPP_VERSION=12.3.0.159-1
-ENV NV_NVTX_VERSION=12.5.82-1
-ENV NV_LIBCUBLAS_VERSION=12.5.3.2-1
-ENV NV_LIBCUSPARSE_VERSION=12.5.1.3-1
-
 RUN apt-get update \
  && apt-get install --yes --no-install-recommends \
-        cuda-libraries-12-5=${NV_CUDA_LIB_VERSION} \
-        libnpp-12-5=${NV_LIBNPP_VERSION} \
-        cuda-nvtx-12-5=${NV_NVTX_VERSION} \
-        libcublas-12-5=${NV_LIBCUBLAS_VERSION} \
-        libcusparse-12-5=${NV_LIBCUSPARSE_VERSION} \
+        cuda-libraries-12-6 \
+        libnpp-12-6 \
+        cuda-nvtx-12-6 \
+        libcublas-12-6 \
+        libcusparse-12-6 \
+        libnccl2 \
  && apt-get autoremove --yes --purge \
  && rm -rf /var/lib/apt/lists/*
 

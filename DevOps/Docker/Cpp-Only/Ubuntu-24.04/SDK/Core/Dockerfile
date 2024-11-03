@@ -31,24 +31,24 @@ RUN apt-get update \
         git \
         cmake \
         ninja-build \
-        build-essential \
-        llvm \
-        clang \
-        clang-tools \
         doxygen \
         graphviz \
-        intel-oneapi-common-licensing-2024.2=2024.2.1-21 \
-        intel-oneapi-dpcpp-cpp-2024.2=2024.2.1-1079 \
+        build-essential \
+        llvm-18 \
+        clang-18 \
+        clang-tools-18 \
+        intel-oneapi-common-licensing-2025.0=2025.0.0-73 \
+        intel-oneapi-dpcpp-cpp-2025.0=2025.0.0-1169 \
  && apt-get autoremove --yes --purge \
  && rm -rf /var/lib/apt/lists/*
 
 RUN apt-mark hold \
         build-essential \
-        llvm \
-        clang \
-        clang-tools \
-        intel-oneapi-common-licensing-2024.2 \
-        intel-oneapi-dpcpp-cpp-2024.2
+        llvm-18 \
+        clang-18 \
+        clang-tools-18 \
+        intel-oneapi-common-licensing-2025.0 \
+        intel-oneapi-dpcpp-cpp-2025.0
 
 # Upgrade the image with the latest patches
 

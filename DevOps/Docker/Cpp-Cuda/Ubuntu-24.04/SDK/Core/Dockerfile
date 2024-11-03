@@ -31,61 +31,55 @@ RUN apt-get update \
         git \
         cmake \
         ninja-build \
-        build-essential \
-        llvm \
-        clang \
-        clang-tools \
         doxygen \
         graphviz \
-        intel-oneapi-common-licensing-2024.2=2024.2.1-21 \
-        intel-oneapi-dpcpp-cpp-2024.2=2024.2.1-1079 \
+        build-essential \
+        llvm-18 \
+        clang-18 \
+        clang-tools-18 \
+        intel-oneapi-common-licensing-2025.0=2025.0.0-73 \
+        intel-oneapi-dpcpp-cpp-2025.0=2025.0.0-1169 \
  && apt-get autoremove --yes --purge \
  && rm -rf /var/lib/apt/lists/*
 
 RUN apt-mark hold \
         build-essential \
-        llvm \
-        clang \
-        clang-tools \
-        intel-oneapi-common-licensing-2024.2 \
-        intel-oneapi-dpcpp-cpp-2024.2
+        llvm-18 \
+        clang-18 \
+        clang-tools-18 \
+        intel-oneapi-common-licensing-2025.0 \
+        intel-oneapi-dpcpp-cpp-2025.0
 
 # Add Nvidia CUDA support
 
-ENV NV_CUDA_CUDART_DEV_VERSION=12.5.82-1
-ENV NV_NVML_DEV_VERSION=12.5.82-1
-ENV NV_NVPROF_VERSION=12.5.82-1
-ENV NV_LIBNPP_DEV_VERSION=12.3.0.159-1
-ENV NV_LIBCUBLAS_DEV_VERSION=12.5.3.2-1
-ENV NV_LIBCUSPARSE_DEV_VERSION=12.5.1.3-1
-ENV NV_CUDA_NSIGHT_COMPUTE_VERSION=12.5.1-1
-
 RUN apt-get update \
  && apt-get install --yes --no-install-recommends \
-        cuda-cudart-dev-12-5=${NV_CUDA_CUDART_DEV_VERSION} \
-        cuda-command-line-tools-12-5=${NV_CUDA_LIB_VERSION} \
-        cuda-minimal-build-12-5=${NV_CUDA_LIB_VERSION} \
-        cuda-libraries-dev-12-5=${NV_CUDA_LIB_VERSION} \
-        cuda-nvml-dev-12-5=${NV_NVML_DEV_VERSION} \
-        cuda-nvprof-12-5=${NV_NVPROF_VERSION} \
-        libnpp-dev-12-5=${NV_LIBNPP_DEV_VERSION} \
-        libcublas-dev-12-5=${NV_LIBCUBLAS_DEV_VERSION} \
-        libcusparse-dev-12-5=${NV_LIBCUSPARSE_DEV_VERSION} \
-        cuda-nsight-compute-12-5=${NV_CUDA_NSIGHT_COMPUTE_VERSION} \
+        cuda-cudart-dev-12-6=12.6.77-1 \
+        cuda-command-line-tools-12-6=12.6.2-1 \
+        cuda-minimal-build-12-6=12.6.2-1 \
+        cuda-libraries-dev-12-6=12.6.2-1 \
+        cuda-nvml-dev-12-6=12.6.77-1 \
+        cuda-nvprof-12-6=12.6.80-1 \
+        libnpp-dev-12-6=12.3.1.54-1 \
+        libcublas-dev-12-6=12.6.3.3-1 \
+        libcusparse-dev-12-6=12.5.4.2-1 \
+        libnccl-dev=2.23.4-1+cuda12.6 \
+        cuda-nsight-compute-12-6=12.6.2-1 \
  && apt-get autoremove --yes --purge \
  && rm -rf /var/lib/apt/lists/*
 
 RUN apt-mark hold \
-        cuda-cudart-dev-12-5 \
-        cuda-command-line-tools-12-5 \
-        cuda-minimal-build-12-5 \
-        cuda-libraries-dev-12-5 \
-        cuda-nvml-dev-12-5 \
-        cuda-nvprof-12-5 \
-        libnpp-dev-12-5 \
-        libcublas-dev-12-5 \
-        libcusparse-dev-12-5 \
-        cuda-nsight-compute-12-5
+        cuda-cudart-dev-12-6 \
+        cuda-command-line-tools-12-6 \
+        cuda-minimal-build-12-6 \
+        cuda-libraries-dev-12-6 \
+        cuda-nvml-dev-12-6 \
+        cuda-nvprof-12-6 \
+        libnpp-dev-12-6 \
+        libcublas-dev-12-6 \
+        libcusparse-dev-12-6 \
+        libnccl-dev \
+        cuda-nsight-compute-12-6
 
 ENV LIBRARY_PATH=/usr/local/cuda/lib64/stubs${LIBRARY_PATH:+:${LIBRARY_PATH}}
 
