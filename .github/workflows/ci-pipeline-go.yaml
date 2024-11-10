@@ -80,6 +80,7 @@ jobs:
             type=semver,pattern={{major}}.{{minor}}
             type=semver,pattern={{major}}
             type=raw,value={{prefix}}latest{{suffix}},enable={{is_default_branch}}
+            type=sha,prefix=sha-,suffix=,format=short
         # https://github.com/docker/metadata-action/tags
       - id: build-and-push-sdk
         name: Build ${{env.IMAGE_NAME}} image and push to ${{env.IMAGE_REPOSITORY}} registry
@@ -89,7 +90,7 @@ jobs:
           file: ./DevOps/Docker/Go-Minimal/Ubuntu-24.10/SDK/Dockerfile
           tags: ${{steps.extract-metadata-sdk.outputs.tags}}
           labels: ${{steps.extract-metadata-sdk.outputs.labels}}
-          push: true
+          push: ${{github.event_name != 'pull_request'}}
         # https://github.com/docker/build-push-action/tags
       - name: Sign the container image
         env:
