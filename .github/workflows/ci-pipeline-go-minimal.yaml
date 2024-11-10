@@ -39,7 +39,7 @@ jobs:
       id-token: write
     runs-on: ubuntu-latest
     env:
-      IMAGE_NAME: go-minimal-sdk
+      IMAGE_NAME: go-minimal
     steps:
       - name: Checkout the git repository
         uses: actions/checkout@v4.2.2
