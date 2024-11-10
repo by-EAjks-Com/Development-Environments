@@ -14,16 +14,16 @@
 #   You should have received a copy of the GNU General Public License
 #   along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-name: (CI/CD) Build and deploy the go-minimal container image
+name: (CI/CD) Build and deploy the go-minimal container images
 on:
   push:
     branches:
       - main
-      - feature/**
-      - issue/**
-      - release/**
+      - feature/go-minimal/**
+      - issue/go-minimal/**
+      - release/go-minimal/**
     tags:
-      - v\d+.\d+.\d+
+      - go-minimal-v\d+.\d+.\d+
   pull_request:
     types:
       - opened
@@ -39,7 +39,7 @@ jobs:
       id-token: write
     runs-on: ubuntu-latest
     env:
-      IMAGE_NAME: go-minimal
+      IMAGE_NAME: go-minimal-sdk
     steps:
       - name: Checkout the git repository
         uses: actions/checkout@v4.2.2
@@ -61,36 +61,34 @@ jobs:
           password: ${{secrets.DOCKER_HUB_ACCESS_TOKEN}}
         # https://github.com/docker/login-action/tags
       - id: extract-metadata-sdk
-        name: Extract docker metadata
+        name: Extract the ${{env.IMAGE_NAME}}-sdk metadata
         uses: docker/metadata-action@v5.5.1
         with:
           context: workflow
           images: |
-            ${{env.IMAGE_REPOSITORY}}/${{env.IMAGE_NAME}}
+            ${{env.IMAGE_REPOSITORY}}/${{env.IMAGE_NAME}}-sdk
           flavor: |
             latest=false
             prefix=,onlatest=true
-            suffix=-sdk-ubuntu-24.10,onlatest=true
+            suffix=,onlatest=true
           tags: |
             type=match,pattern=go-minimal-v(\d+.\d+.\d+)
             type=match,pattern=go-minimal-v(\d+.\d+)
             type=match,pattern=go-minimal-v(\d+)
             type=ref,event=branch
             type=ref,prefix=pr-,event=pr
-            type=sha,prefix=sha-,suffix=,format=long
         # https://github.com/docker/metadata-action/tags
       - id: build-and-push-sdk
-        name: Build ${{env.IMAGE_NAME}} image and push to ${{env.IMAGE_REPOSITORY}} registry
+        name: Build the ${{env.IMAGE_NAME}}-sdk image and push it to the ${{env.IMAGE_REPOSITORY}} registry
         uses: docker/build-push-action@v6.9.0
         with:
           context: .
-          file: ./DevOps/Docker/Go-Minimal/Ubuntu-24.10/SDK/Dockerfile
+          file: ./DevOps/Docker/Go-Minimal/SDK/Dockerfile
           tags: ${{steps.extract-metadata-sdk.outputs.tags}}
           labels: ${{steps.extract-metadata-sdk.outputs.labels}}
           push: true
         # https://github.com/docker/build-push-action/tags
-      - name: Sign the container image
+      - name: Sign the ${{env.IMAGE_NAME}}-sdk image
         env:
-          TAGS: ${{steps.extract-metadata-sdk.outputs.tags}}
           DIGEST: ${{steps.build-and-push-sdk.outputs.digest}}
-        run: cosign sign --yes ${TAGS}@${DIGEST}
+        run: cosign sign --yes ${DIGEST}
