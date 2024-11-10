@@ -14,10 +14,8 @@
 #   You should have received a copy of the GNU General Public License
 #   along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-name: Build and deploy cpp-only
+name: (CI/CD) Build and deploy the cpp-only container image
 on:
-  schedule:
-    - cron: 0 0 1 */3 *
   push:
     branches:
       - main
@@ -26,12 +24,15 @@ on:
       - release/*
     tags:
       - v*.*.*
+    paths:
+      - ./.github/workflows/ci-pipeline-cpp-only.yaml
+      - ./DevOps/Docker/Cpp-Only/**
   pull_request:
     branches:
       - main
-  release:
-    types:
-      - published
+    paths:
+      - ./.github/workflows/ci-pipeline-cpp-only.yaml
+      - ./DevOps/Docker/Cpp-Only/**
 env:
   IMAGE_REPOSITORY: eajkseajks
 jobs:
