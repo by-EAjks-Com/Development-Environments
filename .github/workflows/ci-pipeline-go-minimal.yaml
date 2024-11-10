@@ -27,13 +27,14 @@ on:
     tags:
       - v*.*.*
     paths:
+      - ./.github/workflows/ci-pipeline-go-minimal.yaml
       - ./DevOps/Docker/Go-Minimal/**
   pull_request:
     branches:
       - main
-  release:
-    types:
-      - published
+    paths:
+      - ./.github/workflows/ci-pipeline-go-minimal.yaml
+      - ./DevOps/Docker/Go-Minimal/**
 env:
   IMAGE_REPOSITORY: eajkseajks
 jobs:
@@ -74,15 +75,20 @@ jobs:
             ${{env.IMAGE_REPOSITORY}}/${{env.IMAGE_NAME}}
           flavor: |
             latest=false
-            prefix=
-            suffix=-sdk-ubuntu-24.10
+            prefix=,onlatest=true
+            suffix=-sdk-ubuntu-24.10,onlatest=true
           tags: |
-            type=schedule,pattern={{date YYYYMMDD}}
-            type=semver,pattern={{version}}
+            type=schedule,pattern={{date 'YYYYMMDD'}}
+            type=semver,pattern={{major}}.{{minor}}.{{patch}}
             type=semver,pattern={{major}}.{{minor}}
             type=semver,pattern={{major}}
+            type=match,pattern=go-minimal-v(\d+.\d+.\d+)
+            type=match,pattern=go-minimal-v(\d+.\d+)
+            type=match,pattern=go-minimal-v(\d+)
+            type=ref,prefix={{prefix}},suffix={{suffix}},event=branch
+            type=ref,prefix={{prefix}}pr-,suffix={{suffix}},event=pr
             type=raw,value={{prefix}}latest{{suffix}},enable={{is_default_branch}}
-            type=sha,prefix=sha-,suffix=,format=short
+            type=sha,prefix=sha-,suffix=,format=long
         # https://github.com/docker/metadata-action/tags
       - id: build-and-push-sdk
         name: Build ${{env.IMAGE_NAME}} image and push to ${{env.IMAGE_REPOSITORY}} registry
@@ -92,7 +98,7 @@ jobs:
           file: ./DevOps/Docker/Go-Minimal/Ubuntu-24.10/SDK/Dockerfile
           tags: ${{steps.extract-metadata-sdk.outputs.tags}}
           labels: ${{steps.extract-metadata-sdk.outputs.labels}}
-          push: true
+          push: ${{github.event_name == 'pull_request'}}
         # https://github.com/docker/build-push-action/tags
       - name: Sign the container image
         env:
