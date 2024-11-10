@@ -32,8 +32,8 @@ on:
 env:
   IMAGE_REPOSITORY: eajkseajks
 jobs:
-  build-and-deploy-container-image:
-    name: Build and deploy container image
+  build-and-push-container-image:
+    name: Build and push the container image
     permissions:
       contents: read
       id-token: write
@@ -90,7 +90,7 @@ jobs:
         # https://github.com/docker/build-push-action/tags
       - name: Sign the ${{env.IMAGE_NAME}}-sdk image with GitHub OIDC token
         env:
-          TAGS: ${{steps.build-and-push-sdk.outputs.tags}}
+          TAGS: ${{steps.extract-metadata-sdk.outputs.tags}}
           DIGEST: ${{steps.build-and-push-sdk.outputs.digest}}
         run: |
           IMAGES=''
