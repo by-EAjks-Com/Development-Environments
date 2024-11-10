@@ -26,6 +26,8 @@ on:
       - release/*
     tags:
       - v*.*.*
+    paths:
+      - ./DevOps/Docker/Go-Minimal/**
   pull_request:
     branches:
       - main
