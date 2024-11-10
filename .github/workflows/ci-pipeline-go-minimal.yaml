@@ -72,9 +72,9 @@ jobs:
             prefix=,onlatest=true
             suffix=,onlatest=true
           tags: |
-            type=match,pattern=go-minimal-v(\d+.\d+.\d+)
-            type=match,pattern=go-minimal-v(\d+.\d+)
-            type=match,pattern=go-minimal-v(\d+)
+            type=match,pattern=\d+.\d+.\d+
+            type=match,pattern=\d+.\d+
+            type=match,pattern=\d+
             type=ref,event=branch
             type=ref,prefix=pr-,event=pr
         # https://github.com/docker/metadata-action/tags
