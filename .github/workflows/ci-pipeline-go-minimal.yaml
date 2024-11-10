@@ -28,6 +28,8 @@ on:
       - ./.github/workflows/ci-pipeline-go-minimal.yaml
       - ./DevOps/Docker/Go-Minimal/**
   pull_request:
+    types:
+      - opened
     branches:
       - main
     paths:
