@@ -93,9 +93,6 @@ jobs:
           TAGS: ${{steps.extract-metadata-sdk.outputs.tags}}
           DIGEST: ${{steps.build-and-push-sdk.outputs.digest}}
         run: |
-          IMAGES=''
           for TAG in ${TAGS}; do
-            IMAGES+='${TAG}@${DIGEST}'
-            IMAGES+=' '
+            cosign sign --yes ${TAG}@${DIGEST}
           done
-          cosign sign --yes ${IMAGES}
