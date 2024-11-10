@@ -19,22 +19,16 @@ on:
   push:
     branches:
       - main
-      - feature/*
-      - issue/*
-      - release/*
+      - feature/**
+      - issue/**
+      - release/**
     tags:
-      - v*.*.*
-    paths:
-      - ./.github/workflows/ci-pipeline-go-minimal.yaml
-      - ./DevOps/Docker/Go-Minimal/**
+      - v\d+.\d+.\d+
   pull_request:
     types:
       - opened
     branches:
       - main
-    paths:
-      - ./.github/workflows/ci-pipeline-go-minimal.yaml
-      - ./DevOps/Docker/Go-Minimal/**
 env:
   IMAGE_REPOSITORY: eajkseajks
 jobs:
