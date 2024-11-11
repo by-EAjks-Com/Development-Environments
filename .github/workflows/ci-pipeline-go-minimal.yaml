@@ -31,35 +31,35 @@ on:
     branches:
       - 'main'
 env:
-  IMAGE_REPOSITORY: eajkseajks
+  IMAGE_REPOSITORY: 'eajkseajks'
 jobs:
   build-and-push-container-image:
-    name: Build and push the container image
+    name: 'Build and push the container image'
     permissions:
-      contents: read
-      id-token: write
-    runs-on: ubuntu-latest
+      contents: 'read'
+      id-token: 'write'
+    runs-on: 'ubuntu-latest'
     env:
-      IMAGE_NAME: go-minimal
+      IMAGE_NAME: 'go-minimal'
     steps:
-      - name: Checkout the git repository
-        uses: actions/checkout@v4.2.2
+      - name: 'Checkout the git repository'
+        uses: 'actions/checkout@v4.2.2'
         # https://github.com/actions/checkout/tags
-      - name: Install cosign
-        uses: sigstore/cosign-installer@v3.7.0
+      - name: 'Install cosign'
+        uses: 'sigstore/cosign-installer@v3.7.0'
         with:
-          cosign-release: v2.4.1
+          cosign-release: 'v2.4.1'
         # https://github.com/sigstore/cosign-installer/tags
         # https://github.com/sigstore/cosign/releases
-      - name: Set up docker buildx
-        uses: docker/setup-buildx-action@v3.7.1
+      - name: 'Set up docker buildx'
+        uses: 'docker/setup-buildx-action@v3.7.1'
         # https://github.com/docker/setup-buildx-action/tags
-      - name: Login to ${{env.IMAGE_REPOSITORY}} registry
-        uses: docker/login-action@v3.3.0
+      - name: 'Login to ${{env.IMAGE_REPOSITORY}} registry'
+        uses: 'docker/login-action@v3.3.0'
         with:
-          registry: docker.io
-          username: ${{secrets.DOCKER_HUB_USERNAME}}
-          password: ${{secrets.DOCKER_HUB_ACCESS_TOKEN}}
+          registry: 'docker.io'
+          username: '${{secrets.DOCKER_HUB_USERNAME}}'
+          password: '${{secrets.DOCKER_HUB_ACCESS_TOKEN}}'
         # https://github.com/docker/login-action/tags
       - id: extract-metadata-sdk
         name: Extract the ${{env.IMAGE_NAME}}-sdk metadata
