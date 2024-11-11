@@ -14,7 +14,7 @@
 #   You should have received a copy of the GNU General Public License
 #   along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-name: '(CI/CD) Build and deploy the go-for-redfish container images'
+name: (CI/CD) Build and deploy the go-for-redfish container images
 on:
   push:
     branches:
@@ -24,11 +24,9 @@ on:
       - 'release/go-for-redfish/**'
     tags:
       - 'go-for-redfish-v\d+.\d+.\d+'
-  pull_request:
-    types:
-      - opened
-    branches:
-      - main
+    paths:
+      - '.github/workflows/ci-pipeline-go-for-redfish.yaml'
+      - 'DevOps/Docker/Go-For-Redfish/**'
 env:
   IMAGE_REPOSITORY: eajkseajks
 jobs:
