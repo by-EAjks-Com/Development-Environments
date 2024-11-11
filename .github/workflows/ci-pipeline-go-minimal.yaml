@@ -14,16 +14,16 @@
 #   You should have received a copy of the GNU General Public License
 #   along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-name: (CI/CD) Build and deploy the go-minimal container images
+name: '(CI/CD) Build and deploy the go-minimal container images'
 on:
   push:
     branches:
-      - main
-      - feature/go-minimal/**
-      - issue/go-minimal/**
-      - release/go-minimal/**
+      - 'main'
+      - 'feature/go-minimal/**'
+      - 'issue/go-minimal/**'
+      - 'release/go-minimal/**'
     tags:
-      - go-minimal-v\d+.\d+.\d+
+      - 'go-minimal-v\d+.\d+.\d+'
   pull_request:
     types:
       - opened

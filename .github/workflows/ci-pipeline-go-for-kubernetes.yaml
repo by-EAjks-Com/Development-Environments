@@ -14,16 +14,16 @@
 #   You should have received a copy of the GNU General Public License
 #   along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-name: (CI/CD) Build and deploy the go-for-kubernetes container images
+name: '(CI/CD) Build and deploy the go-for-kubernetes container images'
 on:
   push:
     branches:
-      - main
-      - feature/go-for-kubernetes/**
-      - issue/go-for-kubernetes/**
-      - release/go-for-kubernetes/**
+      - 'main'
+      - 'feature/go-for-kubernetes/**'
+      - 'issue/go-for-kubernetes/**'
+      - 'release/go-for-kubernetes/**'
     tags:
-      - go-for-kubernetes-v\d+.\d+.\d+-\d+
+      - 'go-for-kubernetes-v\d+.\d+.\d+-\d+'
   pull_request:
     types:
       - opened
