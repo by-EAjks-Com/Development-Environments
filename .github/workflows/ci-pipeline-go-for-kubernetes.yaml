@@ -30,8 +30,8 @@ on:
 env:
   IMAGE_REPOSITORY: eajkseajks
 jobs:
-  build-and-push-container-image:
-    name: Build and push the container image
+  build-and-push-container-images:
+    name: Build and push the container images
     permissions:
       contents: read
       id-token: write
