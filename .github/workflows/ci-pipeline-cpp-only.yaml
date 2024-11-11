@@ -135,39 +135,42 @@ jobs:
             cosign sign --yes ${TAG}@${DIGEST}
           done
       - id: extract-metadata-sdk-core
-        name: Extract docker metadata
+        name: Extract the ${{env.IMAGE_NAME}}-sdk-core metadata
         uses: docker/metadata-action@v5.5.1
         with:
           context: workflow
           images: |
-            ${{env.IMAGE_REPOSITORY}}/${{env.IMAGE_NAME}}
+            ${{env.IMAGE_REPOSITORY}}/${{env.IMAGE_NAME}}-sdk-core
           flavor: |
             latest=false
-            prefix=
-            suffix=-sdk-core-ubuntu-24.04
+            prefix=,onlatest=true
+            suffix=,onlatest=true
           tags: |
-            type=schedule,pattern={{ date 'YYYYMMDD'}}
-            type=semver,pattern={{ version}}
-            type=semver,pattern={{ major}}.{{ minor}}
-            type=semver,pattern={{ major}}
-            type=raw,value={{ prefix}}latest{{ suffix}},enable={{is_default_branch}}
+            type=match,pattern=\d+.\d+.\d+
+            type=match,pattern=\d+.\d+
+            type=match,pattern=\d+
+            type=ref,event=branch
+            type=ref,prefix=pr-,event=pr
         # https://github.com/docker/metadata-action/tags
       - id: build-and-push-sdk-core
-        name: Build the container image and push it to the ${{env.IMAGE_REPOSITORY}} registry
-        uses: docker/build-push-action@v6.4.1
+        name: Build the ${{env.IMAGE_NAME}}-sdk-core image and push it to the ${{env.IMAGE_REPOSITORY}} registry
+        uses: docker/build-push-action@v6.9.0
         with:
           context: .
-          file: ./DevOps/Docker/Cpp-Only/Ubuntu-24.04/SDK/Core/Dockerfile
+          file: ./DevOps/Docker/Cpp-Only/SDK/Core/Dockerfile
           build-args: |
             IMAGE_REPOSITORY=${{env.IMAGE_REPOSITORY}}
-            IMAGE_NAME=${{env.IMAGE_NAME}}
+            IMAGE_NAME=${{env.IMAGE_NAME}}-runtime-core
             IMAGE_SHA=${{steps.build-and-push-runtime-core.outputs.digest}}
           tags: ${{steps.extract-metadata-sdk-core.outputs.tags}}
           labels: ${{steps.extract-metadata-sdk-core.outputs.labels}}
           push: true
         # https://github.com/docker/build-push-action/tags
-      - name: Sign the container image
+      - name: Sign the ${{env.IMAGE_NAME}}-sdk-core image with GitHub OIDC token
         env:
           TAGS: ${{steps.extract-metadata-sdk-core.outputs.tags}}
           DIGEST: ${{steps.build-and-push-sdk-core.outputs.digest}}
-        run: cosign sign --yes ${TAGS}@${DIGEST}
+        run: |
+          for TAG in ${TAGS}; do
+            cosign sign --yes ${TAG}@${DIGEST}
+          done
