@@ -14,7 +14,7 @@
 #   You should have received a copy of the GNU General Public License
 #   along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-FROM ubuntu:24.04
+FROM ubuntu:24.10
 
 LABEL maintainer="by-EAjks.Com <Contact@by-EAjks.Com>"
 
