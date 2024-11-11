@@ -35,6 +35,28 @@ RUN apt-get update \
 
 ENV PATH=/usr/local/go/bin${PATH:+:${PATH}}
 
+# Add Go modules for Kubernetes apps
+
+WORKDIR /build
+
+RUN go mod init skeleton \
+ && go get github.com/spf13/cobra@v1.8.1 \
+ && go get github.com/spf13/viper@v1.19.0 \
+ && go get github.com/go-logr/logr@v1.4.2 \
+ && go get github.com/go-logr/zerologr@v1.2.3 \
+ && go get k8s.io/client-go@v0.31.2 \
+ && go get go.opentelemetry.io/otel@v1.32.0 \
+ && go get go.opentelemetry.io/otel/sdk@v1.32.0 \
+ && go get go.opentelemetry.io/otel/sdk/log@v0.8.0 \
+ && go get go.opentelemetry.io/otel/sdk/metric@v1.32.0 \
+ && go get go.opentelemetry.io/otel/sdk/trace@v1.32.0 \
+ && go get go.opentelemetry.io/otel/exporters/stdout/stdoutlog@v0.8.0 \
+ && go get go.opentelemetry.io/otel/exporters/stdout/stdoutmetric@v1.32.0 \
+ && go get go.opentelemetry.io/otel/exporters/stdout/stdouttrace@v1.32.0 \
+ && go get github.com/prometheus/client_golang@v1.20.5 \
+ && go get github.com/elastic/go-elasticsearch/v8@v8.14.0 \
+ && go mod vendor
+
 # Upgrade the image with the latest patches
 
 RUN apt-get update \
