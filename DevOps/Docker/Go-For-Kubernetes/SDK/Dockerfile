@@ -24,8 +24,8 @@ ENV DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update \
  && apt-get install --yes --no-install-recommends \
-        ca-certificates \
         curl \
+        ca-certificates \
  && rm -rf /usr/local/go \
  && curl -fsSL https://go.dev/dl/go1.23.3.linux-amd64.tar.gz | tar -xzf - -C /usr/local \
  && apt-get remove --yes --purge \
