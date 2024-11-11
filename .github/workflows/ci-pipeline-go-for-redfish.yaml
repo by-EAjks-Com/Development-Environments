@@ -23,7 +23,7 @@ on:
       - issue/go-for-redfish/**
       - release/go-for-redfish/**
     tags:
-      - go-for-redfish-v\d+.\d+.\d+-\d+
+      - go-for-redfish-v\d+.\d+.\d+
   pull_request:
     types:
       - opened
