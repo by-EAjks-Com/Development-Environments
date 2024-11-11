@@ -14,30 +14,24 @@
 #   You should have received a copy of the GNU General Public License
 #   along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-name: (CI/CD) Build and deploy the cpp-only container image
+name: (CI/CD) Build and deploy the cpp-only container images
 on:
   push:
     branches:
-      - main
-      - feature/*
-      - issue/*
-      - release/*
+      - 'main'
+      - 'feature/cpp-only/**'
+      - 'issue/cpp-only/**'
+      - 'release/cpp-only/**'
     tags:
-      - v*.*.*
+      - 'cpp-only-v\d+.\d+.\d+'
     paths:
-      - ./.github/workflows/ci-pipeline-cpp-only.yaml
-      - ./DevOps/Docker/Cpp-Only/**
-  pull_request:
-    branches:
-      - main
-    paths:
-      - ./.github/workflows/ci-pipeline-cpp-only.yaml
-      - ./DevOps/Docker/Cpp-Only/**
+      - '.github/workflows/ci-pipeline-cpp-only.yaml'
+      - 'DevOps/Docker/Cpp-Only/**'
 env:
   IMAGE_REPOSITORY: eajkseajks
 jobs:
-  cpp-only:
-    name: Build and deploy cpp-only
+  build-and-push-container-image:
+    name: Build and push the container image
     permissions:
       contents: read
       id-token: write
@@ -45,42 +39,42 @@ jobs:
     env:
       IMAGE_NAME: cpp-only
     steps:
-      - name: Checkout the Git repository
-        uses: actions/checkout@v4.1.7
+      - name: Checkout the git repository
+        uses: actions/checkout@v4.2.2
         # https://github.com/actions/checkout/tags
-      - name: Setup Cosign
-        uses: sigstore/cosign-installer@v3.5.0
+      - name: Install cosign
+        uses: sigstore/cosign-installer@v3.7.0
         with:
-          cosign-release: v2.2.4
+          cosign-release: v2.4.1
         # https://github.com/sigstore/cosign-installer/tags
         # https://github.com/sigstore/cosign/releases
-      - name: Setup Docker Buildx
-        uses: docker/setup-buildx-action@v3.4.0
+      - name: Set up docker buildx
+        uses: docker/setup-buildx-action@v3.7.1
         # https://github.com/docker/setup-buildx-action/tags
       - name: Login to ${{env.IMAGE_REPOSITORY}} registry
-        uses: docker/login-action@v3.2.0
+        uses: docker/login-action@v3.3.0
         with:
           registry: docker.io
           username: ${{secrets.DOCKER_HUB_USERNAME}}
           password: ${{secrets.DOCKER_HUB_ACCESS_TOKEN}}
         # https://github.com/docker/login-action/tags
       - id: extract-metadata-runtime-base
-        name: Extract docker metadata
+        name: Extract the ${{env.IMAGE_NAME}}-runtime-base metadata
         uses: docker/metadata-action@v5.5.1
         with:
           context: workflow
           images: |
-            ${{env.IMAGE_REPOSITORY}}/${{env.IMAGE_NAME}}
+            ${{env.IMAGE_REPOSITORY}}/${{env.IMAGE_NAME}}-runtime-base
           flavor: |
             latest=false
-            prefix=
-            suffix=-runtime-base-ubuntu-24.04
+            prefix=,onlatest=true
+            suffix=,onlatest=true
           tags: |
-            type=schedule,pattern={{ date 'YYYYMMDD'}}
-            type=semver,pattern={{ version}}
-            type=semver,pattern={{ major}}.{{ minor}}
-            type=semver,pattern={{ major}}
-            type=raw,value={{ prefix}}latest{{ suffix}},enable={{is_default_branch}}
+            type=match,pattern=\d+.\d+.\d+
+            type=match,pattern=\d+.\d+
+            type=match,pattern=\d+
+            type=ref,event=branch
+            type=ref,prefix=pr-,event=pr
         # https://github.com/docker/metadata-action/tags
       - id: build-and-push-runtime-base
         name: Build the container image and push it to the ${{env.IMAGE_REPOSITORY}} registry

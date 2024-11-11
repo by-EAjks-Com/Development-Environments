@@ -70,7 +70,6 @@ jobs:
             prefix=,onlatest=true
             suffix=,onlatest=true
           tags: |
-            type=match,pattern=\d+.\d+.\d+-\d+
             type=match,pattern=\d+.\d+.\d+
             type=match,pattern=\d+.\d+
             type=match,pattern=\d+
