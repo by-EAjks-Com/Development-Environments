@@ -18,17 +18,15 @@ name: (CI/CD) Build and deploy the go-minimal container images
 on:
   push:
     branches:
-      - main
-      - feature/go-minimal/**
-      - issue/go-minimal/**
-      - release/go-minimal/**
+      - 'main'
+      - 'feature/go-minimal/**'
+      - 'issue/go-minimal/**'
+      - 'release/go-minimal/**'
     tags:
-      - go-minimal-v\d+.\d+.\d+
-  pull_request:
-    types:
-      - opened
-    branches:
-      - main
+      - 'go-minimal-v\d+.\d+.\d+'
+    paths:
+      - '.github/workflows/ci-pipeline-go-minimal.yaml'
+      - 'DevOps/Docker/Go-Minimal/**'
 env:
   IMAGE_REPOSITORY: eajkseajks
 jobs:

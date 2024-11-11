@@ -14,16 +14,16 @@
 #   You should have received a copy of the GNU General Public License
 #   along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-name: (CI/CD) Build and deploy the go-for-redfish container images
+name: '(CI/CD) Build and deploy the go-for-redfish container images'
 on:
   push:
     branches:
-      - main
-      - feature/go-for-redfish/**
-      - issue/go-for-redfish/**
-      - release/go-for-redfish/**
+      - 'main'
+      - 'feature/go-for-redfish/**'
+      - 'issue/go-for-redfish/**'
+      - 'release/go-for-redfish/**'
     tags:
-      - go-for-redfish-v\d+.\d+.\d+
+      - 'go-for-redfish-v\d+.\d+.\d+'
   pull_request:
     types:
       - opened
