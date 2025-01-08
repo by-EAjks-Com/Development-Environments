@@ -55,16 +55,16 @@ RUN apt-mark hold \
 RUN apt-get update \
  && apt-get install --yes --no-install-recommends \
         cuda-cudart-dev-12-6=12.6.77-1 \
-        cuda-command-line-tools-12-6=12.6.2-1 \
-        cuda-minimal-build-12-6=12.6.2-1 \
-        cuda-libraries-dev-12-6=12.6.2-1 \
+        cuda-command-line-tools-12-6=12.6.3-1 \
+        cuda-minimal-build-12-6=12.6.3-1 \
+        cuda-libraries-dev-12-6=12.6.3-1 \
         cuda-nvml-dev-12-6=12.6.77-1 \
         cuda-nvprof-12-6=12.6.80-1 \
         libnpp-dev-12-6=12.3.1.54-1 \
-        libcublas-dev-12-6=12.6.3.3-1 \
+        libcublas-dev-12-6=12.6.4.1-1 \
         libcusparse-dev-12-6=12.5.4.2-1 \
-        libnccl-dev=2.23.4-1+cuda12.6 \
-        cuda-nsight-compute-12-6=12.6.2-1 \
+        libnccl-dev=2.24.3-1+cuda12.6 \
+        cuda-nsight-compute-12-6=12.6.3-1 \
  && apt-get autoremove --yes --purge \
  && rm -rf /var/lib/apt/lists/*
 
