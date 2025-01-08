@@ -37,8 +37,8 @@ RUN apt-get update \
         llvm-18 \
         clang-18 \
         clang-tools-18 \
-        intel-oneapi-common-licensing-2025.0=2025.0.0-713 \
-        intel-oneapi-dpcpp-cpp-2025.0=2025.0.0-1169 \
+        intel-oneapi-common-licensing-2025.0=2025.0.1-15 \
+        intel-oneapi-dpcpp-cpp-2025.0=2025.0.4-1519 \
  && apt-get autoremove --yes --purge \
  && rm -rf /var/lib/apt/lists/*
 
