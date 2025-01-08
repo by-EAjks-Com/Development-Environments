@@ -59,7 +59,7 @@ RUN apt-get update \
  && apt-get autoremove --yes --purge \
  && rm -rf /var/lib/apt/lists/*
 
-ENV CUDA_VERSION=12.6.2
+ENV CUDA_VERSION=12.6.3
 
 RUN apt-get update \
  && apt-get install --yes --no-install-recommends \
