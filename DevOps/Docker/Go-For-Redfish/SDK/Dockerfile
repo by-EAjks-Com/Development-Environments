@@ -27,7 +27,7 @@ RUN apt-get update \
         curl \
         ca-certificates \
  && rm -rf /usr/local/go \
- && curl -fsSL https://go.dev/dl/go1.23.3.linux-amd64.tar.gz | tar -xzf - -C /usr/local \
+ && curl -fsSL https://go.dev/dl/go1.23.4.linux-amd64.tar.gz | tar -xzf - -C /usr/local \
  && apt-get remove --yes --purge \
         curl \
  && apt-get autoremove --yes --purge \
