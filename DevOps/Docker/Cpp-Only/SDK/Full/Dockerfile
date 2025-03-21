@@ -1,5 +1,5 @@
 #   by-EAjks.Com Development Environments
-#   Copyright (C) 2022-2024 Andrea and Eric DELAGE <Contact@by-EAjks.Com>
+#   Copyright (C) 2022-2025 Andrea and Eric DELAGE <Contact@by-EAjks.Com>
 #
 #   This program is free software: you can redistribute it and/or modify
 #   it under the terms of the GNU General Public License as published by
@@ -29,7 +29,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update \
  && apt-get install --yes --no-install-recommends \
         intel-hpckit-runtime \
-        intel-hpckit=2025.0.1-46 \
+        intel-hpckit=2025.1.0-642 \
  && apt-get autoremove --yes --purge \
  && rm -rf /var/lib/apt/lists/*
 
